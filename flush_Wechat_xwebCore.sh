@@ -7,7 +7,7 @@ clear_libxwebcore() {
 	path=$1
 
 	# Find all directories start with "app_xwalk_" in the path
-	for dir in $(find "$path" -type d -maxdepth 1 -name 'app_xwalk_*'); do
+	for dir in $(find "$path" -type d -maxdepth 1 -iname 'app_xwalk_*'); do
 		# Find all files named libxwebcore.so in the subdirectory /extracted_xwalkcore
 		for file in $(find "$dir/extracted_xwalkcore" -type f -maxdepth 1 -name 'libxwebcore.so'); do
 			chattr -i "$file" # Make sure the file to be editable
@@ -18,7 +18,7 @@ clear_libxwebcore() {
 	done
 
 	# Find all directories start with "xweb_" in the app_xweb_data subdirectory of the path.
-	for dir in $(find "$path/app_xweb_data" -type d -maxdepth 1 -name 'xweb_*'); do
+	for dir in $(find "$path/app_xweb_data" -type d -maxdepth 1 -iname 'xweb_*'); do
 		# Find all files named libxwebcore.so in the subdirectory /extracted_xwalkcore
 		for file in $(find "$dir/extracted_xwalkcore" -type f -maxdepth 1 -name 'libxwebcore.so'); do
 			chattr -i "$file"
